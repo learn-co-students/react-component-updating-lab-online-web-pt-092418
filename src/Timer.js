@@ -50,6 +50,18 @@ class Timer extends Component {
   handleClose = () => {
     this.props.removeTimer(this.props.id);
   };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.time === nextState.time) {
+      return false
+    }
+    return true
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    this.timer.current.style.color =
+        "#" + Math.floor(Math.random() * 16777215).toString(16);
+  }
 }
 
 export default Timer;
